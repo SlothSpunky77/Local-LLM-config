@@ -80,6 +80,22 @@
             "context": 131072,
             "output": 16384
           }
+        },
+        "variants": {
+          "off": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "low": {
+            "reasoningEffort": "low"
+          },
+          "medium": {
+            "reasoningEffort": "medium"
+          },
+          "xhigh": {
+            "reasoningEffort": "xhigh"
+          }
         }
       }
     }
