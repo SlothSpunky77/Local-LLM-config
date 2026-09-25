@@ -9,7 +9,7 @@
       "*.env.*": "ask",
       "*.env.example": "allow"
     },
-    "edit": "ask",
+    "edit": "allow",
     "glob": "allow",
     "grep": "allow",
     "list": "allow",
@@ -42,9 +42,27 @@
       "cut *": "allow",
       "tr *": "allow",
       "jq *": "allow",
-      "*>*": "ask"
+      "*>*": "ask",
+      "timeout *": "allow",
+      "/home/mars/anaconda3/bin/runSofa *": "allow",
+      "nvidia-smi *": "allow",
+      "sleep *": "allow",
+      "python -c *": "allow",
+      "python render_tentacle.py *": "allow",
+      "ffprobe *": "allow",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "find *": "allow",
+      "sed *": "allow",
+      "python --version *": "allow",
+      "python3 *": "allow",
+      "./venv/bin/python *": "allow"
     },
-    "external_directory": "ask",
+    "external_directory": {
+      "*": "ask",
+      "/tmp/*": "allow"
+    },
     "question": "allow",
     "webfetch": "allow",
     "websearch": "allow",
@@ -78,46 +96,68 @@
           "tool_call": true,
           "limit": {
             "context": 131072,
-            "output": 16384
+            "output": 32768
+          },
+          "variants": {
+            "off": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh"
+            }
           }
         },
-        "variants": {
-          "off": {
-            "chat_template_kwargs": {
-              "enable_thinking": false
+        "qwen3.8-27b-code:latest": {
+          "name": "qwen3.8-27b-code:latest",
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "variants": {
+            "off": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh"
             }
-          },
-          "low": {
-            "reasoningEffort": "low"
-          },
-          "medium": {
-            "reasoningEffort": "medium"
-          },
-          "xhigh": {
-            "reasoningEffort": "xhigh"
           }
         }
       }
     }
   },
   "model": "ollama-local/qwen3.8-27b:latest",
-  "agent": {
-    "plan": {
-      "model": "ollama-local/qwen3.8-27b:latest"
-    },
-    "orchestrator": {
-      "model": "ollama-local/qwen3.8-27b:latest"
-    },
-    "debug": {
-      "model": "ollama-local/qwen3.8-27b:latest"
-    },
-    "code": {
-      "model": "ollama-local/qwen3.8-27b:latest"
-    },
-    "ask": {
-      "model": "ollama-local/qwen3.8-27b:latest"
-    }
-  },
+  // "agent": {
+  //   "plan": {
+  //     "model": "ollama-local/qwen3.8-27b:latest"
+  //   },
+  //   "orchestrator": {
+  //     "model": "ollama-local/qwen3.8-27b:latest"
+  //   },
+  //   "debug": {
+  //     "model": "ollama-local/qwen3.8-27b:latest"
+  //   },
+  //   "code": {
+  //     "model": "ollama-local/qwen3.8-27b:latest"
+  //   },
+  //   "ask": {
+  //     "model": "ollama-local/qwen3.8-27b:latest"
+  //   }
+  // },
   "web_search": true,
   "indexing": {
     "enabled": true,
@@ -127,6 +167,18 @@
     "vectorStore": "lancedb",
     "ollama": {
       "baseUrl": "http://100.107.251.96:11434"
+    }
+  },
+  "agent": {
+    "code": {
+      "model": "ollama-local/qwen3.8-27b-code:latest",
+      "temperature": 0.3,
+      "top_p": 0.95
+    },
+    "plan": {
+      "model": "ollama-local/qwen3.8-27b:latest",
+      "temperature": 1.0,
+      "top_p": 0.95
     }
   }
 }
