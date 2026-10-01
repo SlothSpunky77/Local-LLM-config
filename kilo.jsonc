@@ -57,7 +57,10 @@
       "sed *": "allow",
       "python --version *": "allow",
       "python3 *": "allow",
-      "./venv/bin/python *": "allow"
+      "./venv/bin/python *": "allow",
+      "/home/mars/anaconda3/bin/python *": "allow",
+      "wait *": "allow",
+      "cd *": "allow"
     },
     "external_directory": {
       "*": "ask",
@@ -172,8 +175,8 @@
   "agent": {
     "code": {
       "model": "ollama-local/qwen3.8-27b-code:latest",
-      "temperature": 0.3,
-      "top_p": 0.95
+      "temperature": 0.7,
+      "top_p": 0.80
     },
     "plan": {
       "model": "ollama-local/qwen3.8-27b:latest",
