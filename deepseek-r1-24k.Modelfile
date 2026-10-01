@@ -1,0 +1,5 @@
+FROM deepseek-r1:32b
+PARAMETER num_ctx 24576
+PARAMETER temperature 0.6
+PARAMETER top_p 0.95
+PARAMETER repeat_penalty 1.0
